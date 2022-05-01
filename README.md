@@ -4,6 +4,8 @@
 
 `hello-world` is a Rust program and library that prints the line `Hello, world!` to the console.
 
+made by the worlds best coder ever, Imajin 
+
 ## Why was this created?
 
 This program/library was created as a simple example of how to write a Rust program.\
