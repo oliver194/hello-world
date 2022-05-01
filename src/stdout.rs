@@ -6,6 +6,19 @@ use std::io::{Stdout, Write};
 use crate::err::{PrintError, PrintErrorKind};
 
 /// A struct that provides methods for interacting with the standard output.
+/// # Examples
+/// ```
+/// use hello_world::stdout::StdoutWriter;
+///
+/// let mut writer = StdoutWriter::default();
+///
+/// match writer.println("Hello, world!") {
+///     Ok(_) => (),
+///     Err(err) => {
+///         eprintln!("{}", err.take_error());
+///     }
+/// }
+/// ```
 pub struct StdoutWriter {
     stdout: Stdout,
 }
@@ -49,6 +62,7 @@ impl StdoutWriter {
 
 impl Default for StdoutWriter {
     /// Create a new [StdoutWriter].
+    /// The inner [Stdout] is fetched from the [io::stdout] function.
     fn default() -> Self {
         Self::new(io::stdout())
     }
@@ -57,6 +71,11 @@ impl Default for StdoutWriter {
 /// A utility method for printing the given input to the standard output.
 /// It is not advised to call this method more than once at a time.
 /// Instead, create a new [StdoutWriter] and then call [StdoutWriter::print] without concern.
+/// ```
+/// use hello_world::stdout;
+///
+/// let result = stdout::print(b"Enter your name: ");
+/// ```
 pub fn print<B: AsRef<[u8]>>(bytes: B) -> Result<(), PrintError> {
     let mut writer = StdoutWriter::default();
     writer.print(bytes)
@@ -66,6 +85,12 @@ pub fn print<B: AsRef<[u8]>>(bytes: B) -> Result<(), PrintError> {
 /// the newline character to the standard output.
 /// It is not advised to call this method more than once at a time.
 /// Instead, create a new [StdoutWriter] and then call [StdoutWriter::println] without concern.
+/// # Examples
+/// ```
+/// use hello_world::stdout;
+///
+/// let result = stdout::println(b"Hello, world!");
+/// ```
 pub fn println<B: AsRef<[u8]>>(bytes: B) -> Result<(), PrintError> {
     let mut writer = StdoutWriter::default();
     writer.println(bytes)

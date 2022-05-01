@@ -1,9 +1,10 @@
 [package]
 name = "hello-world"
-version = "0.1.0"
+version = "0.1.1"
 authors = ["ImajinDevon"]
-description = "A program/library to print a Hello World message to the standard output."
+description = "A program/library to print a Hello World line to the standard output."
 edition = "2021"
+keywords = ["hello", "world", "hello-world", "beginner"]
 
 [features]
 time = []
